@@ -37,3 +37,18 @@ class Solution:
             return reverse(head, newHead)
 
         return reverse(head, None)
+
+
+'''clenaer solution'''
+
+
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        newHead = None
+        while head:
+            next = head.next
+            head.next = newHead
+            newHead = head
+            head = next
+
+        return newHead
