@@ -1,19 +1,10 @@
-def longestCommonPrefix(self, strs: List[str]) -> str:
-    if "" in strs:
-        return ""
-    elif len(strs) == 1:
-        return strs[0]
-    elif len(strs) > 1:
-        prefix = ""
-        s1 = sorted(strs, key=lambda x: len(x))[0]
-        for i in range(len(s1)):
-            for s in sorted(strs, key=lambda x: len(x))[1:]:
-                if s1[i] == s[i]:
-                    pass
-                else:
-                    return prefix
-            prefix += s1[i]
-    else:
-        return ""
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        if not strs:
+            return ""
+        for i in range(len(strs[0])):
+            for s in strs[1:]:
+                if i >= len(s) or strs[0][i] != s[i]:
+                    return strs[0][:i]
 
-    return prefix
+        return strs[0]
