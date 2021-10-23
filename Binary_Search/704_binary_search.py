@@ -14,8 +14,6 @@ class Solution:
         return -1
 
 '''Recursion'''
-
-
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         def helper(l, r):
