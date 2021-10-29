@@ -1,5 +1,5 @@
 class Solution:
-    def generateParenthesis(self, n: int) -> List[str]:
+    def generateParenthesis(self, n: int):
         # only add open parenthesis if open < n
         # only add close parenthesis if closed < open
         # valid IFF open == closed == n
@@ -21,3 +21,6 @@ class Solution:
 
         backtrack(0, 0)
         return res
+
+a = Solution()
+print(a.generateParenthesis(3))
