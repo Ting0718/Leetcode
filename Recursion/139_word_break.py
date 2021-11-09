@@ -2,18 +2,18 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         @lru_cache
-        def wordBreakRecur(s, wordDict, start):
+        def wordBreakRecur(s, start):
             if start == len(s):
                 return True
             for end in range(start + 1, len(s) + 1):
-                if s[start:end] in wordDict and wordBreakRecur(s, wordDict, end):
+                if s[start:end] in wordDict and wordBreakRecur(s, end):
                     return True
             return False
 
-        return wordBreakRecur(s, frozenset(wordDict), 0)
+        return wordBreakRecur(s, 0)
 
 
-'''dynampic'''
+'''dynamic'''
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         dp = [False] * (len(s) + 1)
