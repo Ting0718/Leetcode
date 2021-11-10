@@ -14,8 +14,6 @@ class Solution:
         return longest
 
 '''Sorting'''
-
-
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
         if not nums:
