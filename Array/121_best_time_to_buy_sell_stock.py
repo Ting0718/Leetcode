@@ -7,3 +7,14 @@ class Solution:
             profit = price - min_buy
             max_profit = max(profit, max_profit)
         return max_profit
+
+'''Brute Force'''
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        maxProfit = 0
+        for i in range(len(prices)-1):
+            for j in range(i+1, len(prices)):
+                if prices[j] - prices[i] > maxProfit:
+                    maxProfit = prices[j] - prices[i]
+
+        return maxProfit
