@@ -1,9 +1,5 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+
+'''BFS'''
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
         if not root:
@@ -21,3 +17,21 @@ class Solution:
                 queue.append((current.right, max(max_val, current.val)))
 
         return count
+
+'''DFS'''
+class Solution(object):
+    def goodNodes(self, root):
+        self.count = 0
+
+        def dfs(root, max_num):
+            if not root:
+                return
+            if root.val >= max_num:
+                self.count += 1
+            if root.left:
+                dfs(root.left, max(max_num, root.val))
+            if root.right:
+                dfs(root.right, max(max_num, root.val))
+
+        dfs(root, float("-inf"))
+        return self.count
