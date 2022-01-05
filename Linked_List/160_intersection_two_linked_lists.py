@@ -1,10 +1,4 @@
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
-
-
+'''Solution 1: If reach the tail, point each head to other head'''
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
         if not headA or not headB:
@@ -25,3 +19,18 @@ class Solution:
                 tmpB = tmpB.next
 
         return tmpA
+
+'''Solution 2: Hash Set'''
+class Solution(object):
+    def getIntersectionNode(self, headA, headB):
+        hashset_b = set()
+        while headB:
+            hashset_b.add(headB)
+            headB = headB.next
+
+        while headA:
+            if headA in hashset_b:
+                return headA
+            headA = headA.next
+
+        return headA

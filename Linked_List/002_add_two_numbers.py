@@ -10,29 +10,66 @@ class ListNode:
         self.val = x
         self.next = None
 
+'''Better Solution: Use carry'''
 
-def addTwoNumbers(l1: ListNode, l2: ListNode) -> ListNode:
-    s1 = ""
-    s2 = ""
-    while l1 or l2:
-        if l1:
-            s1 += str(l1.val)
-            l1 = l1.next
-        if l2:
-            s2 += str(l2.val)
-            l2 = l2.next
 
-    s1 = int(s1[::-1])
-    s2 = int(s2[::-1])
+class Solution(object):
+    def addTwoNumbers(self, l1, l2):
+        dummy = tail = ListNode()
+        carry = 0
 
-    a = s1 + s2
-    a = str(a)[::-1]
+        # edge case when carry is not null
+        while l1 or l2 or carry:
+            if l1:
+                v1 = l1.val
+            else:
+                v1 = 0
 
-    l = ListNode(str(a)[0])
-    temp = l
+            if l2:
+                v2 = l2.val
+            else:
+                v2 = 0
 
-    for i in str(a)[1:]:
-        temp.next = ListNode(int(i))
-        temp = temp.next
+            # new digit
+            val = v1 + v2 + carry
+            carry = val // 10
+            val = val % 10
+            tail.next = ListNode(val)
 
-    return l
+            # update pointers
+            tail = tail.next
+            if l1:
+                l1 = l1.next
+            else:
+                l1 = None
+
+            if l2:
+                l2 = l2.next
+            else:
+                l2 = None
+
+        return dummy.next
+
+
+class Solution(object):
+    def addTwoNumbers(self, l1, l2):
+
+        num1 = ""
+        num2 = ""
+        while l1 or l2:
+            while l1:
+                num1 = str(l1.val) + num1
+                l1 = l1.next
+
+            while l2:
+                num2 = str(l2.val) + num2
+                l2 = l2.next
+
+        s = str(int(num1) + int(num2))[::-1]
+        print(s)
+        dummy = tail = ListNode()
+        for i in s:
+            tail.next = ListNode(i)
+            tail = tail.next
+
+        return dummy.next
